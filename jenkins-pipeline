@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+   
+        stages {
+            stage('Install apache'){
+               steps {
+                   sh 'sudo apt install apache2 -y'
+            }
+        } 
+        stage('Fetch Code'){
+            steps {
+                git branch: 'main', url: 'https://github.com/Ishabagga/devops-simplilearn.git'
+            }
+        }
+        stage('Deploy Application'){
+            steps {
+                sh 'sudo cp -R * /var/www/html/'
+            }
+        }
+    }
+    
+}
